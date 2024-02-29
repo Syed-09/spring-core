@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--Creating a bean and then inject some property like firstName-->
+    <bean id ="person" class="org.example.Person" scope="prototype" autowire="byType">
+    <!--Scope-->
+    <!--Default scope is "singleton", previous object will get overridden when new object is created-->
+    <!--Set scope as "prototype", to create new object when new object is initiated-->
+
+    <!--AutoWire-->
+    <!--Auto wire"byType" checks for the classtype Car, you can remove Car property in this bean class-->
+    <!--You can directly use @AutoWired in Car initiation in person class-->
+
+<!--        <property name="firstName" value="Syed"/>  &lt;!&ndash;Setter Injection&ndash;&gt;-->
+        <!--The above value is injected using setter method-->
+
+        <!--Spring Creates the object by calling default constructor-->
+        <!--Setter method will override parameterised constructor-->
+        <constructor-arg name ="firstName" value="Syed" type="String"/>
+        <constructor-arg name ="lastName" value="Khaja" type="String"/>
+        <constructor-arg name ="age" value="12" type="int"/>
+
+<!--        <property name="mycar" ref ="car1"/> &lt;!&ndash;Remove autowire attribute in bean initiation&ndash;&gt;-->
+    <!--Use same ref value, as of defined in bean tags-->
+    </bean>
+
+    <bean id="car1" class="org.example.Car" scope="prototype">
+    <!--Use same id name while referring-->
+        <property name="make" value="Honda"/>
+        <property name="model" value="City"/>
+        <property name="year" value="2020"/>
+    </bean>
+
+</beans>
